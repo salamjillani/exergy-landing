@@ -1,79 +1,116 @@
 // app/solutions/page.tsx
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { ArrowRight, Menu, Linkedin, HardHat } from "lucide-react"
-import { useState, useEffect } from "react"
-import emailjs from '@emailjs/browser'
-import { toast } from "sonner"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { ArrowRight, Menu, Linkedin, HardHat } from "lucide-react";
+import { useState, useEffect } from "react";
+import emailjs from "@emailjs/browser";
+import { toast } from "sonner";
 
 export default function SolutionsPage() {
   const [formData, setFormData] = useState({
-    name: '',
-    company: '',
-    phone: '',
-    email: '',
-    message: ''
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
+    name: "",
+    company: "",
+    phone: "",
+    email: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    emailjs.init('s_9t3BpECERoZ008T')
-  }, [])
+    emailjs.init("s_9t3BpECERoZ008T");
+  }, []);
 
   const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    
+    e.preventDefault();
+    setIsSubmitting(true);
+
     try {
       const result = await emailjs.sendForm(
-        'service_88mykdn',
-        'template_ob6vjap',
+        "service_88mykdn",
+        "template_ob6vjap",
         e.currentTarget,
-        's_9t3BpECERoZ008T'
-      )
-      
+        "s_9t3BpECERoZ008T"
+      );
+
       if (result.status === 200) {
-        toast.success('Message sent successfully! We\'ll get back to you soon.')
-        setFormData({ name: '', company: '', phone: '', email: '', message: '' })
+        toast.success("Message sent successfully! We'll get back to you soon.");
+        setFormData({
+          name: "",
+          company: "",
+          phone: "",
+          email: "",
+          message: "",
+        });
       }
     } catch (error) {
-      console.error('EmailJS error:', error)
-      toast.error('Failed to send message. Please try again or contact us directly.')
+      console.error("EmailJS error:", error);
+      toast.error(
+        "Failed to send message. Please try again or contact us directly."
+      );
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   const scrollToContact = (e) => {
-    e.preventDefault()
-    document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })
-  }
+    e.preventDefault();
+    document
+      .getElementById("contact-form")
+      ?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-black/95 backdrop-blur-sm border-b border-zinc-800/50">
         <div className="max-w-[1400px] mx-auto flex items-center justify-between px-8 py-5">
-          <div className="flex items-center space-x-3">
-            <img src="/exergy-logo-symbol.png" alt="Exergy Logo" className="h-8 w-auto" />
-            <span className="text-2xl font-semibold">Exergy</span>
+          <div className="flex items-center space-x-3 mb-6">
+            <Link href="/" className="flex items-center space-x-3">
+              <img
+                src="/exergy-logo-symbol.png"
+                alt="Exergy Logo"
+                className="h-8 w-auto"
+              />
+              <span className="text-2xl font-semibold">Exergy</span>
+            </Link>
           </div>
-          
+
           <div className="hidden lg:flex items-center space-x-10 text-[15px] font-medium">
-            <a href="/" className="text-zinc-400 hover:text-white transition-colors">Platform Overview</a>
-            <a href="/solutions" className="text-white hover:text-white transition-colors">Solutions</a>
-            <a href="/documentation" className="text-zinc-400 hover:text-white transition-colors">Documentation</a>
-            <a href="/company" className="text-zinc-400 hover:text-white transition-colors">Company</a>
+            <a
+              href="/"
+              className="text-zinc-400 hover:text-white transition-colors"
+            >
+              Platform Overview
+            </a>
+            <a
+              href="/solutions"
+              className="text-white hover:text-white transition-colors"
+            >
+              Solutions
+            </a>
+            <a
+              href="/documentation"
+              className="text-zinc-400 hover:text-white transition-colors"
+            >
+              Documentation
+            </a>
+            <a
+              href="/company"
+              className="text-zinc-400 hover:text-white transition-colors"
+            >
+              Company
+            </a>
           </div>
-          
+
           <div className="flex items-center space-x-6">
-            <a 
+            <a
               href="https://www.linkedin.com/company/exergysoftware"
               target="_blank"
               rel="noopener noreferrer"
@@ -81,9 +118,9 @@ export default function SolutionsPage() {
             >
               <Linkedin className="w-5 h-5 text-zinc-400 cursor-pointer hover:text-white transition-colors" />
             </a>
-            <button 
+            <button
               className="text-white hover:opacity-90 font-medium px-6 py-2 rounded-md text-sm hidden md:inline-flex items-center justify-center transition-opacity"
-              style={{ backgroundColor: '#1B9ED9' }}
+              style={{ backgroundColor: "#1B9ED9" }}
               onClick={scrollToContact}
             >
               Contact Us
@@ -101,14 +138,18 @@ export default function SolutionsPage() {
             Solutions
           </h1>
           <p className="text-xl text-zinc-400 mb-12 max-w-2xl mx-auto">
-            We're working on it! This site is currently under construction. Please check back soon.
+            We're working on it! This site is currently under construction.
+            Please check back soon.
           </p>
         </div>
       </section>
 
       {/* CTA Section with Contact Form */}
-      <section id="contact-form" className="py-32 px-8 relative overflow-hidden">
-        <div 
+      <section
+        id="contact-form"
+        className="py-32 px-8 relative overflow-hidden"
+      >
+        <div
           className="absolute inset-0 bg-[url('/ctabg.jpg')] bg-cover bg-center opacity-10"
           style={{ zIndex: 1 }}
         />
@@ -120,7 +161,8 @@ export default function SolutionsPage() {
               your processes?
             </h2>
             <p className="text-zinc-200 text-xl mb-10 leading-relaxed max-w-3xl mx-auto drop-shadow-md">
-              Discover how Exergy's AI solutions can optimize your operations and drive sustainable impact
+              Discover how Exergy's AI solutions can optimize your operations
+              and drive sustainable impact
             </p>
           </div>
 
@@ -128,7 +170,10 @@ export default function SolutionsPage() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-zinc-700 mb-2">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-zinc-700 mb-2"
+                  >
                     Name <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -143,7 +188,10 @@ export default function SolutionsPage() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="company" className="block text-sm font-medium text-zinc-700 mb-2">
+                  <label
+                    htmlFor="company"
+                    className="block text-sm font-medium text-zinc-700 mb-2"
+                  >
                     Company <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -161,7 +209,10 @@ export default function SolutionsPage() {
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-zinc-700 mb-2">
+                  <label
+                    htmlFor="phone"
+                    className="block text-sm font-medium text-zinc-700 mb-2"
+                  >
                     Phone Number
                   </label>
                   <input
@@ -175,7 +226,10 @@ export default function SolutionsPage() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-zinc-700 mb-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-zinc-700 mb-2"
+                  >
                     Email <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -192,7 +246,10 @@ export default function SolutionsPage() {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-zinc-700 mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium text-zinc-700 mb-2"
+                >
                   Message <span className="text-red-500">*</span>
                 </label>
                 <textarea
@@ -211,9 +268,9 @@ export default function SolutionsPage() {
                 type="submit"
                 disabled={isSubmitting}
                 className="w-full text-white hover:opacity-90 px-8 py-4 text-base font-medium rounded-full transition-opacity disabled:opacity-50"
-                style={{ backgroundColor: '#1B9ED9' }}
+                style={{ backgroundColor: "#1B9ED9" }}
               >
-                {isSubmitting ? 'Sending...' : 'Submit'}
+                {isSubmitting ? "Sending..." : "Submit"}
               </button>
             </form>
           </div>
@@ -226,65 +283,142 @@ export default function SolutionsPage() {
           <div className="grid md:grid-cols-6 gap-12 mb-16">
             <div className="md:col-span-2">
               <div className="flex items-center space-x-3 mb-6">
-                <img src="/exergy-logo-symbol.png" alt="Exergy Logo" className="h-8 w-auto" />
-                <span className="text-2xl font-semibold">Exergy</span>
+                <Link href="/" className="flex items-center space-x-3">
+                  <img
+                    src="/exergy-logo-symbol.png"
+                    alt="Exergy Logo"
+                    className="h-8 w-auto"
+                  />
+                  <span className="text-2xl font-semibold">Exergy</span>
+                </Link>
               </div>
               <p className="text-zinc-400 text-sm leading-relaxed max-w-xs">
-                Advanced AI solutions for process modeling and control in the chemical and food industry
+                Advanced AI solutions for process modeling and control in the
+                chemical and food industry
               </p>
             </div>
-            
+
             <div>
               <h4 className="font-semibold mb-6 text-sm">SOLUTIONS</h4>
               <ul className="space-y-4 text-sm text-zinc-400">
-                <li><a href="#" className="hover:text-white transition-colors">Process Modeling</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Control Systems</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Analytics</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Enterprise</a></li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Process Modeling
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Control Systems
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Analytics
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Enterprise
+                  </a>
+                </li>
               </ul>
             </div>
-            
+
             <div>
               <h4 className="font-semibold mb-6 text-sm">INDUSTRIES</h4>
               <ul className="space-y-4 text-sm text-zinc-400">
-                <li><a href="#" className="hover:text-white transition-colors">Food & Beverage</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Chemical Processing</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Pharmaceuticals</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Petrochemicals</a></li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Food & Beverage
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Chemical Processing
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Pharmaceuticals
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Petrochemicals
+                  </a>
+                </li>
               </ul>
             </div>
-            
+
             <div>
               <h4 className="font-semibold mb-6 text-sm">COMPANY</h4>
               <ul className="space-y-4 text-sm text-zinc-400">
-                <li><a href="#" className="hover:text-white transition-colors">About</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Support</a></li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Careers
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Contact
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Support
+                  </a>
+                </li>
               </ul>
             </div>
 
             <div>
               <h4 className="font-semibold mb-6 text-sm">RESOURCES</h4>
               <ul className="space-y-4 text-sm text-zinc-400">
-                <li><a href="#" className="hover:text-white transition-colors">Documentation</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Case Studies</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">FAQ</a></li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Documentation
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Case Studies
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Blog
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    FAQ
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
-          
+
           <div className="border-t border-zinc-900 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-zinc-400">
             <p>&copy; 2024 Exergy. All rights reserved.</p>
             <div className="flex gap-8 mt-6 md:mt-0">
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-              <a href="#" className="hover:text-white transition-colors">Cookie Settings</a>
+              <a href="#" className="hover:text-white transition-colors">
+                Privacy Policy
+              </a>
+              <a href="#" className="hover:text-white transition-colors">
+                Terms of Service
+              </a>
+              <a href="#" className="hover:text-white transition-colors">
+                Cookie Settings
+              </a>
             </div>
           </div>
         </div>
       </footer>
     </div>
-  )
+  );
 }
