@@ -1,4 +1,3 @@
-// app/documentation/page.tsx
 "use client";
 
 import Link from "next/link";
@@ -141,6 +140,16 @@ export default function DocumentationPage() {
             We're working on it! This site is currently under construction.
             Please check back soon.
           </p>
+          <div className="flex justify-center">
+            <Link href="/">
+              <Button
+                variant="outline"
+                className="border-white text-white hover:bg-white/10"
+              >
+                ← Home
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -222,7 +231,7 @@ export default function DocumentationPage() {
                     value={formData.phone}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 text-zinc-900 border border-zinc-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
-                    placeholder="+1 234 567 8900"
+                    placeholder="+31 6 12345678"
                   />
                 </div>
                 <div>
@@ -404,7 +413,7 @@ export default function DocumentationPage() {
           </div>
 
           <div className="border-t border-zinc-900 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-zinc-400">
-            <p>&copy; 2024 Exergy. All rights reserved.</p>
+            <p>&copy; 2025 Exergy. All rights reserved.</p>
             <div className="flex gap-8 mt-6 md:mt-0">
               <a href="#" className="hover:text-white transition-colors">
                 Privacy Policy

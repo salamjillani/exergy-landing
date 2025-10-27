@@ -1,4 +1,3 @@
-// app/solutions/page.tsx
 "use client";
 
 import Link from "next/link";
@@ -71,7 +70,7 @@ export default function SolutionsPage() {
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-black/95 backdrop-blur-sm border-b border-zinc-800/50">
         <div className="max-w-[1400px] mx-auto flex items-center justify-between px-8 py-5">
-          <div className="flex items-center space-x-3 mb-6">
+          <div className="flex items-center space-x-3">
             <Link href="/" className="flex items-center space-x-3">
               <img
                 src="/exergy-logo-symbol.png"
@@ -141,6 +140,16 @@ export default function SolutionsPage() {
             We're working on it! This site is currently under construction.
             Please check back soon.
           </p>
+          <div className="flex justify-center">
+            <Link href="/">
+              <Button
+                variant="outline"
+                className="border-white text-white hover:bg-white/10"
+              >
+                ← Home
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -222,7 +231,7 @@ export default function SolutionsPage() {
                     value={formData.phone}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 text-zinc-900 border border-zinc-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
-                    placeholder="+1 234 567 8900"
+                    placeholder="+31 6 12345678"
                   />
                 </div>
                 <div>
@@ -404,7 +413,7 @@ export default function SolutionsPage() {
           </div>
 
           <div className="border-t border-zinc-900 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-zinc-400">
-            <p>&copy; 2024 Exergy. All rights reserved.</p>
+            <p>&copy; 2025 Exergy. All rights reserved.</p>
             <div className="flex gap-8 mt-6 md:mt-0">
               <a href="#" className="hover:text-white transition-colors">
                 Privacy Policy

@@ -1,4 +1,3 @@
-// app/layout.tsx
 import type React from "react"
 import type { Metadata } from "next"
 import { GeistSans } from "geist/font/sans"
@@ -6,7 +5,7 @@ import { GeistMono } from "geist/font/mono"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import "./globals.css"
-import { Toaster } from "sonner" // Add this for toast notifications
+import { Toaster } from "sonner"
 
 export const metadata: Metadata = {
   title: "Exergy - AI Solutions for Process Modeling & Control",
@@ -23,7 +22,7 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
         <Suspense fallback={null}>{children}</Suspense>
-        <Toaster /> {/* Add this to show toasts */}
+        <Toaster />
         <Analytics />
       </body>
     </html>
