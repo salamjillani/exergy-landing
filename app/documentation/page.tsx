@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -8,7 +7,6 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
-
 export default function DocumentationPage() {
   const pathname = usePathname();
   const [formData, setFormData] = useState({
@@ -20,19 +18,15 @@ export default function DocumentationPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   useEffect(() => {
     emailjs.init("s_9t3BpECERoZ008T");
   }, []);
-
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
     try {
       const result = await emailjs.sendForm(
         "service_88mykdn",
@@ -40,9 +34,8 @@ export default function DocumentationPage() {
         e.currentTarget,
         "s_9t3BpECERoZ008T"
       );
-
       if (result.status === 200) {
-        toast.success("Message sent successfully! We&apos;ll get back to you soon.");
+        toast.success("Message sent successfully! We'll get back to you soon.");
         setFormData({
           name: "",
           company: "",
@@ -60,14 +53,12 @@ export default function DocumentationPage() {
       setIsSubmitting(false);
     }
   };
-
   const scrollToContact = (e) => {
     e.preventDefault();
     document
       .getElementById("contact-form")
       ?.scrollIntoView({ behavior: "smooth" });
   };
-
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Navigation */}
@@ -83,7 +74,6 @@ export default function DocumentationPage() {
               <span className="text-2xl font-semibold">Exergy</span>
             </Link>
           </div>
-
           <div className="hidden lg:flex items-center space-x-10 text-[15px] font-medium">
             <a
               href="/"
@@ -110,7 +100,6 @@ export default function DocumentationPage() {
               Company
             </a>
           </div>
-
           <div className="flex items-center space-x-4 sm:space-x-6 relative">
             <a
               href="https://www.linkedin.com/company/exergysoftware"
@@ -136,7 +125,6 @@ export default function DocumentationPage() {
           </div>
         </div>
       </nav>
-
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="lg:hidden fixed inset-0 z-50 bg-black flex flex-col items-center justify-center space-y-8 pt-20">
@@ -197,16 +185,15 @@ export default function DocumentationPage() {
           </button>
         </div>
       )}
-
       {/* Placeholder Section */}
       <section className="relative pt-20 sm:pt-40 pb-16 px-4 sm:px-8 overflow-hidden flex items-center justify-center min-h-[calc(100vh-10rem)]">
         <div className="max-w-[1400px] mx-auto text-center">
-          <HardHat className="w-16 h-16 sm:w-24 sm:h-24 mx-auto mb-8 text-zinc-500" />
-          <h1 className="text-[36px] sm:text-[48px] md:text-[64px] font-bold leading-tight mb-6 text-zinc-300">
+          <HardHat className="w-12 h-12 sm:w-18 sm:h-18 mx-auto mb-8 text-zinc-500" />
+          <h1 className="text-[28px] sm:text-[38px] md:text-[50px] font-bold leading-tight mb-6 text-zinc-300">
             Documentation
           </h1>
           <p className="text-lg sm:text-xl text-zinc-400 mb-12 max-w-2xl mx-auto">
-            We&apos;re working on it! This site is currently under construction.
+            We're working on it! This site is currently under construction.
             Please check back soon.
           </p>
           <div className="flex justify-center">
@@ -221,7 +208,6 @@ export default function DocumentationPage() {
           </div>
         </div>
       </section>
-
       {/* CTA Section with Contact Form */}
       <section
         id="contact-form"
@@ -233,17 +219,16 @@ export default function DocumentationPage() {
         />
         <div className="max-w-[1200px] mx-auto relative z-10">
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-[40px] sm:text-[52px] md:text-[64px] font-bold mb-6 leading-tight text-white drop-shadow-lg">
+            <h2 className="text-[30px] sm:text-[39px] md:text-[48px] font-bold mb-6 leading-tight text-white drop-shadow-lg">
               Ready to transform
               <br />
               your processes?
             </h2>
             <p className="text-zinc-200 text-lg sm:text-xl mb-10 leading-relaxed max-w-3xl mx-auto drop-shadow-md">
-              Discover how Exergy&apos;s AI solutions can optimize your operations
+              Discover how Exergy's AI solutions can optimize your operations
               and drive sustainable impact
             </p>
           </div>
-
           <div className="max-w-2xl mx-auto bg-white/95 backdrop-blur-sm p-6 sm:p-8 rounded-3xl shadow-lg border border-white/20">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -284,7 +269,6 @@ export default function DocumentationPage() {
                   />
                 </div>
               </div>
-
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label
@@ -322,7 +306,6 @@ export default function DocumentationPage() {
                   />
                 </div>
               </div>
-
               <div>
                 <label
                   htmlFor="message"
@@ -341,7 +324,6 @@ export default function DocumentationPage() {
                   placeholder="Tell us about your project..."
                 />
               </div>
-
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -354,7 +336,6 @@ export default function DocumentationPage() {
           </div>
         </div>
       </section>
-
       {/* Footer */}
       <footer className="py-12 sm:py-20 px-4 sm:px-8 bg-black border-t border-zinc-900">
         <div className="max-w-[1400px] mx-auto">
@@ -375,7 +356,6 @@ export default function DocumentationPage() {
                 chemical and food industry
               </p>
             </div>
-
             <div>
               <h4 className="font-semibold mb-6 text-sm">SOLUTIONS</h4>
               <ul className="space-y-4 text-sm text-zinc-400">
@@ -401,7 +381,6 @@ export default function DocumentationPage() {
                 </li>
               </ul>
             </div>
-
             <div>
               <h4 className="font-semibold mb-6 text-sm">INDUSTRIES</h4>
               <ul className="space-y-4 text-sm text-zinc-400">
@@ -427,7 +406,6 @@ export default function DocumentationPage() {
                 </li>
               </ul>
             </div>
-
             <div>
               <h4 className="font-semibold mb-6 text-sm">COMPANY</h4>
               <ul className="space-y-4 text-sm text-zinc-400">
@@ -453,7 +431,6 @@ export default function DocumentationPage() {
                 </li>
               </ul>
             </div>
-
             <div>
               <h4 className="font-semibold mb-6 text-sm">RESOURCES</h4>
               <ul className="space-y-4 text-sm text-zinc-400">
@@ -480,7 +457,6 @@ export default function DocumentationPage() {
               </ul>
             </div>
           </div>
-
           <div className="border-t border-zinc-900 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-zinc-400">
             <p>&copy; 2025 Exergy. All rights reserved.</p>
             <div className="flex gap-8 mt-6 md:mt-0">

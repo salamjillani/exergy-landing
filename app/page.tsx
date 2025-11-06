@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -8,7 +7,6 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
-
 export default function HomePage() {
   const pathname = usePathname();
   const [formData, setFormData] = useState({
@@ -20,19 +18,15 @@ export default function HomePage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   useEffect(() => {
     emailjs.init("s_9t3BpECERoZ008T");
   }, []);
-
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
     try {
       const result = await emailjs.sendForm(
         "service_88mykdn",
@@ -40,7 +34,6 @@ export default function HomePage() {
         e.currentTarget,
         "s_9t3BpECERoZ008T"
       );
-
       if (result.status === 200) {
         toast.success("Message sent successfully! We'll get back to you soon.");
         setFormData({
@@ -60,14 +53,12 @@ export default function HomePage() {
       setIsSubmitting(false);
     }
   };
-
   const scrollToContact = (e) => {
     e.preventDefault();
     document
       .getElementById("contact-form")
       ?.scrollIntoView({ behavior: "smooth" });
   };
-
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Navigation */}
@@ -83,7 +74,6 @@ export default function HomePage() {
               <span className="text-2xl font-semibold">Exergy</span>
             </Link>
           </div>
-
           <div className="hidden lg:flex items-center space-x-10 text-[15px] font-medium">
             <a
               href="/platform-overview"
@@ -110,7 +100,6 @@ export default function HomePage() {
               Company
             </a>
           </div>
-
           <div className="flex items-center space-x-4 sm:space-x-6 relative">
             <a
               href="https://www.linkedin.com/company/exergysoftware"
@@ -136,7 +125,6 @@ export default function HomePage() {
           </div>
         </div>
       </nav>
-
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="lg:hidden fixed inset-0 z-50 bg-black flex flex-col items-center justify-center space-y-8 pt-20">
@@ -197,12 +185,11 @@ export default function HomePage() {
           </button>
         </div>
       )}
-
       {/* Hero Section */}
       <section className="relative pt-20 sm:pt-40 pb-16 px-4 sm:px-8 overflow-hidden">
         <div className="max-w-[1400px] mx-auto">
           <div className="text-center mb-16">
-            <h1 className="text-[48px] sm:text-[60px] md:text-[72px] lg:text-[88px] xl:text-[104px] font-bold leading-[0.95] mb-8 tracking-tight">
+            <h1 className="text-[36px] sm:text-[45px] md:text-[54px] lg:text-[66px] xl:text-[78px] font-bold leading-[0.95] mb-8 tracking-tight">
               Process Learning Engine
               <br />
               for Food Production
@@ -234,14 +221,13 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
       {/* What We Do Section - Features Style */}
       <section className="py-12 sm:py-20 px-4 sm:px-8">
         <div className="max-w-[1200px] mx-auto space-y-16 sm:space-y-32">
           {/* Feature 1 */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-20 items-center">
             <div>
-              <h3 className="text-[32px] sm:text-[42px] md:text-[48px] font-bold mb-6 leading-tight">
+              <h3 className="text-[24px] sm:text-[31px] md:text-[36px] font-bold mb-6 leading-tight">
                 Data → Insights
               </h3>
               <p className="text-zinc-300 text-base sm:text-lg leading-relaxed">
@@ -251,7 +237,7 @@ export default function HomePage() {
                 clarity they need to improve performance and reliability.
               </p>
             </div>
-            <div className="relative h-[300px] sm:h-[450px] rounded-3xl overflow-hidden">
+            <div className="relative h-[225px] sm:h-[340px] rounded-3xl overflow-hidden">
               <img
                 src="/data-insights.jpg"
                 alt="Data to Insights"
@@ -259,10 +245,9 @@ export default function HomePage() {
               />
             </div>
           </div>
-
           {/* Feature 2 */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-20 items-center">
-            <div className="order-2 md:order-1 relative h-[300px] sm:h-[450px] rounded-3xl overflow-hidden">
+            <div className="order-2 md:order-1 relative h-[225px] sm:h-[340px] rounded-3xl overflow-hidden">
               <img
                 src="/aipowered.jpg"
                 alt="AI-Powered Efficiency"
@@ -270,7 +255,7 @@ export default function HomePage() {
               />
             </div>
             <div className="order-1 md:order-2">
-              <h3 className="text-[32px] sm:text-[42px] md:text-[48px] font-bold mb-6 leading-tight">
+              <h3 className="text-[24px] sm:text-[31px] md:text-[36px] font-bold mb-6 leading-tight">
                 AI-Powered
                 <br />
                 Efficiency
@@ -282,11 +267,10 @@ export default function HomePage() {
               </p>
             </div>
           </div>
-
           {/* Feature 3 */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-20 items-center">
             <div>
-              <h3 className="text-[32px] sm:text-[42px] md:text-[48px] font-bold mb-6 leading-tight">
+              <h3 className="text-[24px] sm:text-[31px] md:text-[36px] font-bold mb-6 leading-tight">
                 Sustainable
                 <br />
                 Operations
@@ -298,7 +282,7 @@ export default function HomePage() {
                 sustainable and resource-efficient industrial processes.
               </p>
             </div>
-            <div className="relative h-[300px] sm:h-[450px] rounded-3xl overflow-hidden">
+            <div className="relative h-[225px] sm:h-[340px] rounded-3xl overflow-hidden">
               <img
                 src="/sustainableoperations.jpg"
                 alt="Sustainable Operations"
@@ -308,19 +292,17 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
       {/* What Sets Us Apart Section - Use Cases Style */}
       <section className="py-12 sm:py-20 px-4 sm:px-8">
         <div className="max-w-[1400px] mx-auto">
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-[32px] sm:text-[42px] font-bold mb-4">What Sets Us Apart</h2>
+            <h2 className="text-[24px] sm:text-[31px] font-bold mb-4">What Sets Us Apart</h2>
             <p className="text-zinc-300 text-base sm:text-lg">
               Unique expertise and technology that delivers measurable results
             </p>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-            <div className="relative h-[250px] sm:h-[400px] rounded-2xl overflow-hidden group cursor-pointer">
+            <div className="relative h-[190px] sm:h-[300px] rounded-2xl overflow-hidden group cursor-pointer">
               <img
                 src="/combinedexpertise.jpg"
                 alt="Combined Expertise"
@@ -340,8 +322,7 @@ export default function HomePage() {
                 </p>
               </div>
             </div>
-
-            <div className="relative h-[250px] sm:h-[400px] rounded-2xl overflow-hidden group cursor-pointer">
+            <div className="relative h-[190px] sm:h-[300px] rounded-2xl overflow-hidden group cursor-pointer">
               <img
                 src="/hybridmodeling.jpg"
                 alt="Hybrid Modeling Approach"
@@ -360,8 +341,7 @@ export default function HomePage() {
                 </p>
               </div>
             </div>
-
-            <div className="relative h-[250px] sm:h-[400px] rounded-2xl overflow-hidden group cursor-pointer">
+            <div className="relative h-[190px] sm:h-[300px] rounded-2xl overflow-hidden group cursor-pointer">
               <img
                 src="/provenroi.jpg"
                 alt="Proven ROI"
@@ -382,12 +362,11 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
       {/* Projects Section */}
       <section className="py-12 sm:py-20 px-4 sm:px-8">
         <div className="max-w-[1400px] mx-auto">
           <div className="text-center mb-12 sm:mb-20">
-            <h2 className="text-[32px] sm:text-[42px] font-bold mb-6 leading-tight">
+            <h2 className="text-[24px] sm:text-[31px] font-bold mb-6 leading-tight">
               Projects & Partnerships
               <br />
               That Drive Impact
@@ -400,9 +379,8 @@ export default function HomePage() {
               impact together.
             </p>
           </div>
-
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="relative h-[400px] sm:h-[500px] rounded-3xl overflow-hidden group cursor-pointer">
+            <div className="relative h-[300px] sm:h-[375px] rounded-3xl overflow-hidden group cursor-pointer">
               <img
                 src="/aidriven.jpg"
                 alt="AI-Assisted Packaging Recycling in Food Industry"
@@ -428,8 +406,7 @@ export default function HomePage() {
                 </Button>
               </div>
             </div>
-
-            <div className="relative h-[400px] sm:h-[500px] rounded-3xl overflow-hidden group cursor-pointer">
+            <div className="relative h-[300px] sm:h-[375px] rounded-3xl overflow-hidden group cursor-pointer">
               <img
                 src="/shapingfuture.jpg"
                 alt="AI-Assisted Food Production Process Modeling"
@@ -455,7 +432,6 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-
           <div className="text-center mt-12 sm:mt-16">
             <p className="text-zinc-300 text-base sm:text-lg mb-8">
               Get in touch to explore how we can collaborate.
@@ -483,21 +459,19 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
       {/* Solutions Section */}
       <section className="py-12 sm:py-20 px-4 sm:px-8 bg-zinc-950">
         <div className="max-w-[1400px] mx-auto">
           <div className="text-center mb-12 sm:mb-20">
-            <h2 className="text-[32px] sm:text-[42px] font-bold mb-6">Our Core Solutions</h2>
+            <h2 className="text-[24px] sm:text-[31px] font-bold mb-6">Our Core Solutions</h2>
             <p className="text-zinc-300 text-lg sm:text-xl">
               Advanced AI models tailored for industrial process optimization
             </p>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-zinc-900/50 border border-zinc-800 rounded-3xl overflow-hidden hover:border-zinc-700 transition-colors">
               <div
-                className="relative h-[150px] sm:h-[180px] w-full"
+                className="relative h-[115px] sm:h-[135px] w-full"
                 style={{ backgroundColor: "#FC494C" }}
               >
                 <img
@@ -541,10 +515,9 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-
             <div className="bg-zinc-900/50 border border-zinc-800 rounded-3xl overflow-hidden hover:border-zinc-700 transition-colors">
               <div
-                className="relative h-[150px] sm:h-[180px] w-full"
+                className="relative h-[115px] sm:h-[135px] w-full"
                 style={{ backgroundColor: "#81DFFB" }}
               >
                 <img
@@ -585,10 +558,9 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-
             <div className="bg-zinc-900/50 border border-zinc-800 rounded-3xl overflow-hidden hover:border-zinc-700 transition-colors">
               <div
-                className="relative h-[150px] sm:h-[180px] w-full"
+                className="relative h-[115px] sm:h-[135px] w-full"
                 style={{ backgroundColor: "#A4E7BE" }}
               >
                 <img
@@ -632,17 +604,15 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
       {/* Team Profile Section */}
       <section className="py-12 sm:py-20 px-4 sm:px-8">
         <div className="max-w-[1400px] mx-auto">
           <div className="text-center mb-12 sm:mb-20">
-            <h2 className="text-[32px] sm:text-[42px] font-bold mb-6">Meet Our Team</h2>
+            <h2 className="text-[24px] sm:text-[31px] font-bold mb-6">Meet Our Team</h2>
             <p className="text-zinc-300 text-lg sm:text-xl">
               Expert process engineers and data scientists driving innovation
             </p>
           </div>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             <a
               href="https://www.linkedin.com/in/jotriso"
@@ -651,11 +621,11 @@ export default function HomePage() {
               className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-6 sm:p-10 text-center hover:border-zinc-700 transition-colors"
             >
               <div
-                className="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-6 flex items-center justify-center"
+                className="w-20 h-20 sm:w-28 sm:h-28 rounded-full mx-auto mb-6 flex items-center justify-center"
                 style={{ backgroundColor: "rgba(27, 158, 217, 0.2)" }}
               >
                 <span
-                  className="text-2xl sm:text-4xl font-bold"
+                  className="text-xl sm:text-3xl font-bold"
                   style={{ color: "#1B9ED9" }}
                 >
                   JT
@@ -664,7 +634,6 @@ export default function HomePage() {
               <h3 className="text-xl sm:text-2xl font-bold mb-2">Jose Trigueros</h3>
               <p className="text-zinc-300 text-base sm:text-lg">Executive Manager</p>
             </a>
-
             <a
               href="https://www.linkedin.com/in/raquel-sabater-canovas"
               target="_blank"
@@ -672,11 +641,11 @@ export default function HomePage() {
               className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-6 sm:p-10 text-center hover:border-zinc-700 transition-colors"
             >
               <div
-                className="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-6 flex items-center justify-center"
+                className="w-20 h-20 sm:w-28 sm:h-28 rounded-full mx-auto mb-6 flex items-center justify-center"
                 style={{ backgroundColor: "rgba(220, 38, 127, 0.2)" }}
               >
                 <span
-                  className="text-2xl sm:text-4xl font-bold"
+                  className="text-xl sm:text-3xl font-bold"
                   style={{ color: "#DC267F" }}
                 >
                   RS
@@ -685,7 +654,6 @@ export default function HomePage() {
               <h3 className="text-xl sm:text-2xl font-bold mb-2">Raquel Sabater</h3>
               <p className="text-zinc-300 text-base sm:text-lg">Process Engineer</p>
             </a>
-
             <a
               href="https://www.linkedin.com/in/jairo-madrigal-montes-15380a30"
               target="_blank"
@@ -693,11 +661,11 @@ export default function HomePage() {
               className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-6 sm:p-10 text-center hover:border-zinc-700 transition-colors"
             >
               <div
-                className="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-6 flex items-center justify-center"
+                className="w-20 h-20 sm:w-28 sm:h-28 rounded-full mx-auto mb-6 flex items-center justify-center"
                 style={{ backgroundColor: "rgba(254, 97, 0, 0.2)" }}
               >
                 <span
-                  className="text-2xl sm:text-4xl font-bold"
+                  className="text-xl sm:text-3xl font-bold"
                   style={{ color: "#FE6100" }}
                 >
                   JM
@@ -706,7 +674,6 @@ export default function HomePage() {
               <h3 className="text-xl sm:text-2xl font-bold mb-2">Jairo Madrigal</h3>
               <p className="text-zinc-300 text-base sm:text-lg">Financial Manager</p>
             </a>
-
             <a
               href="https://www.linkedin.com/in/iason-kolokythas-188661334"
               target="_blank"
@@ -714,11 +681,11 @@ export default function HomePage() {
               className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-6 sm:p-10 text-center hover:border-zinc-700 transition-colors"
             >
               <div
-                className="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-6 flex items-center justify-center"
+                className="w-20 h-20 sm:w-28 sm:h-28 rounded-full mx-auto mb-6 flex items-center justify-center"
                 style={{ backgroundColor: "rgba(255, 184, 28, 0.2)" }}
               >
                 <span
-                  className="text-2xl sm:text-4xl font-bold"
+                  className="text-xl sm:text-3xl font-bold"
                   style={{ color: "#FFB81C" }}
                 >
                   JK
@@ -730,7 +697,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
       {/* CTA Section with Contact Form */}
       <section
         id="contact-form"
@@ -742,7 +708,7 @@ export default function HomePage() {
         />
         <div className="max-w-[1200px] mx-auto relative z-10">
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-[40px] sm:text-[52px] md:text-[64px] font-bold mb-6 leading-tight text-white drop-shadow-lg">
+            <h2 className="text-[30px] sm:text-[39px] md:text-[48px] font-bold mb-6 leading-tight text-white drop-shadow-lg">
               Ready to transform
               <br />
               your processes?
@@ -752,7 +718,6 @@ export default function HomePage() {
               and drive sustainable impact
             </p>
           </div>
-
           <div className="max-w-2xl mx-auto bg-white/95 backdrop-blur-sm p-6 sm:p-8 rounded-3xl shadow-lg border border-white/20">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -793,7 +758,6 @@ export default function HomePage() {
                   />
                 </div>
               </div>
-
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label
@@ -831,7 +795,6 @@ export default function HomePage() {
                   />
                 </div>
               </div>
-
               <div>
                 <label
                   htmlFor="message"
@@ -850,7 +813,6 @@ export default function HomePage() {
                   placeholder="Tell us about your project..."
                 />
               </div>
-
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -863,7 +825,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
       {/* Footer */}
       <footer className="py-12 sm:py-20 px-4 sm:px-8 bg-black border-t border-zinc-900">
         <div className="max-w-[1400px] mx-auto">
@@ -879,13 +840,11 @@ export default function HomePage() {
                   <span className="text-2xl font-semibold">Exergy</span>
                 </Link>
               </div>
-
               <p className="text-zinc-400 text-sm leading-relaxed max-w-xs">
                 Advanced AI solutions for process modeling and control in the
                 chemical and food industry
               </p>
             </div>
-
             <div>
               <h4 className="font-semibold mb-6 text-sm">SOLUTIONS</h4>
               <ul className="space-y-4 text-sm text-zinc-400">
@@ -911,7 +870,6 @@ export default function HomePage() {
                 </li>
               </ul>
             </div>
-
             <div>
               <h4 className="font-semibold mb-6 text-sm">INDUSTRIES</h4>
               <ul className="space-y-4 text-sm text-zinc-400">
@@ -937,7 +895,6 @@ export default function HomePage() {
                 </li>
               </ul>
             </div>
-
             <div>
               <h4 className="font-semibold mb-6 text-sm">COMPANY</h4>
               <ul className="space-y-4 text-sm text-zinc-400">
@@ -963,7 +920,6 @@ export default function HomePage() {
                 </li>
               </ul>
             </div>
-
             <div>
               <h4 className="font-semibold mb-6 text-sm">RESOURCES</h4>
               <ul className="space-y-4 text-sm text-zinc-400">
@@ -990,7 +946,6 @@ export default function HomePage() {
               </ul>
             </div>
           </div>
-
           <div className="border-t border-zinc-900 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-zinc-400">
             <p>&copy; 2025 Exergy. All rights reserved.</p>
             <div className="flex gap-8 mt-6 md:mt-0">
